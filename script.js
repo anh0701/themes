@@ -95,10 +95,18 @@ themes.forEach(theme => {
     <div class="theme-title" style="color:${titleColor}">${theme.title}</div>
     <div class="colors">
       ${theme.colors.map(c =>
-        `<div class="color" style="background:${c}" data-color="${c}"></div>`
+        `<div class="color color-copy" 
+          style="background:${c}; color:${getTextColor(c)};" 
+          data-color="${c}">
+          ${c}
+        </div>`
       ).join("")}
     </div>
-    <div class="theme-title" style="color:${titleColor}; margin-top: 35px;">${theme.background}</div>
+    <div class="theme-title color-copy" 
+      style="color:${titleColor}; margin-top: 35px;"
+      data-color="${theme.background}">
+        ${theme.background}
+    </div>
   `;
 
   container.appendChild(card);
@@ -106,7 +114,7 @@ themes.forEach(theme => {
 
 // copy color
 document.addEventListener("click", e => {
-  if (e.target.classList.contains("color")) {
+  if (e.target.classList.contains("color-copy")) {
     const color = e.target.dataset.color;
     navigator.clipboard.writeText(color);
     showToast(`Copied ${color}`);
