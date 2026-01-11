@@ -53,22 +53,38 @@ body {
 
 #toast {
   position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 20px;
+  right: 20px;
+
   background: #fbeaea;
   color: #c0392b;
-  padding: 10px 18px;
+
+  min-width: 300px;
+  font-size: 16px;
+  padding: 16px 24px;
+
+
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
+  line-height: 1.4;
+
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /* nằm ngoài màn hình bên phải */
+  transform: translateX(120%);
+  transition: opacity 0.25s ease,
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #toast.show {
   opacity: 1;
-  transform: translateX(-50%) translateY(-6px);
+  pointer-events: auto;
+
+  /* trượt vào trong */
+  transform: translateX(0);
 }
+
